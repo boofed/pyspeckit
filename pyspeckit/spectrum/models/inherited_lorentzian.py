@@ -15,12 +15,26 @@ import numpy
 
 def lorentzian(x,A,dx,w, return_components=False):
     """
-    Returns a 1-dimensional lorentzian of form
-    A*2*pi*w/((x-dx)**2 + ((w/2)**2))
+    Returns a 1-dimensional lorentzian of the form
+    A/(2*pi)*w/((x-dx)**2 + ((w/2)**2))
     
-    [amplitude,center,width]
+             1             w
+        A ------- --------------------
+           2  pi   (x-dx)^2 + (w/2)^2
+    
+     A = Amplitude
+    dx = Center
+     w = Full Width at Half Maximum
+    
+    Also known as the "Cauchy Distribution"
+    
+    Guesses should be of the form [amplitude,center,width]
 
     return_components does nothing but is required by all fitters
+    
+    Additional readings:
+    http://mathworld.wolfram.com/CauchyDistribution.html
+    https://en.wikipedia.org/wiki/Cauchy_distribution
     
     """
     x = numpy.array(x) # make sure xarr is no longer a spectroscopic axis
